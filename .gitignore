@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.market-server.log
+*.tmp
+*.csv
+市场数据快照.json
+最近行情快照.json
+.DS_Store

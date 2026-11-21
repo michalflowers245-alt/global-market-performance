@@ -1,0 +1,122 @@
+<section id="global-market-returns" data-mode="<!--CHART_MODE-->">
+  <style><!--CHART_STYLE--></style>
+  <header class="market-header">
+    <h1>全球市场涨幅对比</h1>
+    <p class="text-small text-muted" data-overview>加载历史数据…</p>
+    <nav class="viz-row market-nav" aria-label="图表导航">
+      <a href="#market-us">美股近 50 年</a>
+      <a href="#market-bitcoin">比特币全历史</a>
+      <a href="#market-comparison">中美股市和比特币</a>
+      <a href="#market-quotes">最新行情</a>
+    </nav>
+  </header>
+
+  <section id="market-us" class="market-section" aria-labelledby="market-us-heading">
+    <div class="market-heading">
+      <h2 id="market-us-heading">美股近 50 年</h2>
+      <p class="text-small text-muted">按各自首个记录日归一。ETF 从各自有行情的日期开始。</p>
+    </div>
+    <div class="viz-row market-controls" data-controls-us>
+      <label class="form-label">纵轴
+        <select class="form-select" data-us-scale><option value="log">倍数 · 对数</option><option value="linear">涨幅 % · 线性</option></select>
+      </label>
+      <button type="button" class="btn" data-us-all>显示全部美股曲线</button>
+    </div>
+    <div class="market-legend" data-legend-us aria-label="切换美股曲线"></div>
+    <div class="market-plot" data-plot-us>
+      <canvas role="img" aria-label="美股全市场、主要指数及 ETF 的近 50 年价格曲线"></canvas>
+      <div class="market-tip" hidden></div>
+    </div>
+    <div class="market-inspect">
+      <label class="form-label">查看某日 <input class="form-control" type="date" data-us-inspect></label>
+      <output class="text-small text-muted tabular-nums" data-us-readout></output>
+    </div>
+  </section>
+
+  <section id="market-bitcoin" class="market-section" aria-labelledby="market-btc-heading">
+    <div class="market-heading">
+      <h2 id="market-btc-heading">比特币全历史</h2>
+      <p class="text-small text-muted">2009 年为独立估算报价。连续日度参考价始于 2010-07-18。<span class="market-live" hidden> 空心末点为 Coinbase 最新成交。</span></p>
+    </div>
+    <div class="viz-row market-controls">
+      <label class="form-label">纵轴
+        <select class="form-select" data-btc-metric><option value="price">美元价格 · 对数</option><option value="return">累计倍数 · 对数</option><option value="drawdown">距历史高点跌幅 %</option></select>
+      </label>
+      <label class="form-label">区间
+        <select class="form-select" data-btc-range><option value="all">全历史</option><option value="early">2009–2013</option><option value="2013">2013–2017</option><option value="2017">2017–2021</option><option value="2021">2021 至今</option></select>
+      </label>
+    </div>
+    <div class="market-plot market-plot-tall" data-plot-btc>
+      <canvas role="img" aria-label="比特币长期美元价格，早期估算价与市场日度参考价"></canvas>
+      <div class="market-tip" hidden></div>
+    </div>
+    <div class="market-inspect">
+      <label class="form-label">查看某日 <input class="form-control" type="date" data-btc-inspect></label>
+      <output class="text-small text-muted tabular-nums" data-btc-readout></output>
+    </div>
+  </section>
+
+  <section id="market-comparison" class="market-section" aria-labelledby="market-compare-heading">
+    <div class="market-heading">
+      <h2 id="market-compare-heading">中美股市和比特币同日起点</h2>
+      <p class="text-small text-muted">所有选中曲线从同一个有记录的交易日开始。各市场使用本币或原指数点位。</p>
+    </div>
+    <div class="viz-row market-controls">
+      <label class="form-label">起始日期 <input class="form-control" type="date" data-start></label>
+      <label class="form-label">纵轴
+        <select class="form-select" data-compare-scale><option value="log">倍数 · 对数</option><option value="linear">涨幅 % · 线性</option></select>
+      </label>
+    </div>
+    <div class="viz-row market-presets" aria-label="起始日期快捷选项">
+      <button type="button" class="btn" data-since="2010-07-18">比特币日线起点</button>
+      <button type="button" class="btn" data-since="5">近 5 年</button>
+      <button type="button" class="btn" data-since="1">近 1 年</button>
+      <button type="button" class="btn" data-since="ytd">年初至今</button>
+    </div>
+    <div class="market-legend" data-legend-compare aria-label="切换跨市场曲线"></div>
+    <p class="text-small text-muted tabular-nums" data-baseline aria-live="polite"></p>
+    <div class="market-plot" data-plot-compare>
+      <canvas role="img" aria-label="选中的美股指数、ETF、A 股指数和比特币同日起点累计涨幅"></canvas>
+      <div class="market-tip" hidden></div>
+    </div>
+    <div class="market-inspect">
+      <label class="form-label">查看某日 <input class="form-control" type="date" data-compare-inspect></label>
+      <output class="text-small text-muted tabular-nums" data-compare-readout></output>
+    </div>
+  </section>
+
+  <section id="market-quotes" class="market-section" aria-labelledby="market-quotes-heading">
+    <div class="market-heading">
+      <h2 id="market-quotes-heading">最新行情</h2>
+      <p class="text-small text-muted" data-quote-summary></p>
+    </div>
+    <div class="viz-row market-controls market-live" hidden>
+      <button type="button" class="btn btn-primary" data-refresh>立即刷新</button>
+      <label class="form-check"><input type="checkbox" class="form-check-input" data-auto checked> 每 60 秒刷新</label>
+      <span class="text-small text-muted" data-refresh-status role="status"></span>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-sm tabular-nums" aria-label="最新行情，报价时间为北京时间">
+        <thead><tr><th scope="col">标的</th><th scope="col" class="text-end">最新值</th><th scope="col" class="text-end">涨跌</th><th scope="col" class="text-end">报价时间 · 北京</th></tr></thead>
+        <tbody data-quote-rows></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details class="market-section market-sources">
+    <summary>数据口径与来源</summary>
+    <ul>
+      <li>指数列用价格指数。ETF 使用拆分调整收盘价，累计涨幅未计现金分红。各序列未统一换汇、未扣通胀。涨幅＝（当前值÷起点值－1）×100%。</li>
+      <li>威尔希尔 5000 在 1976–1979 年初期多为月末值，1989 年用重合交易日校对后衔接 Yahoo。纳斯达克 100 的 Yahoo 日线从 1985-10-01 开始。<a href="https://www.wilshireindexes.com/products/ft-wilshire-5000-index-series" target="_blank" rel="noopener">指数说明</a> · <a href="https://www.forecasts.org/data/data/w5000M.htm" target="_blank" rel="noopener">威尔希尔早期档案</a> · <a href="https://finance.yahoo.com/quote/%5EGSPC/history/" target="_blank" rel="noopener">Yahoo Finance</a></li>
+      <li>A 股来自东方财富。中证全指覆盖 A 股宽基。沪深 300 的 2005 年 4 月 8 日发布前数据属历史回算。<a href="https://quote.eastmoney.com/zs000985.html" target="_blank" rel="noopener">东方财富</a> · <a href="https://oss-ch.csindex.com.cn/static/html/csindex/public/uploads/indices/detail/files/zh_CN/20231208175438-000985_Index_Methodology_cn.pdf" target="_blank" rel="noopener">中证全指</a></li>
+      <li>比特币历史用 Coin Metrics PriceUSD，记录日为 UTC 时间戳。2009-10-05 的 1 美元兑 1,309.03 BTC 为电费成本估算，图中用独立点。<a href="https://docs.coinmetrics.io/api-reference/api-conventions" target="_blank" rel="noopener">Coin Metrics</a> · <a href="https://www.resistance.money/research/library/to%20be%20organised%20better/Will%20Luther%20papers/getting_off_the_ground_the_case_of_bitcoin.pdf" target="_blank" rel="noopener">早期报价记载</a></li>
+      <li>实时区按各自来源时间显示。美股和 A 股涨跌对比上一交易日收盘，BTC 对比 Coinbase 过去 24 小时开盘价。公开股市数据可能延时，休市时显示最近报价。盘中值不进入历史累计涨幅。</li>
+    </ul>
+  </details>
+  <div class="viz-row market-live market-downloads" hidden>
+    <a class="btn" href="/data.csv">下载历史日线 CSV</a>
+    <a class="btn" href="/summary.csv">下载各曲线涨幅 CSV</a>
+  </div>
+  <script type="application/octet-stream" data-market-payload><!--CHART_DATA--></script>
+</section>
+<script><!--CHART_SCRIPT--></script>
